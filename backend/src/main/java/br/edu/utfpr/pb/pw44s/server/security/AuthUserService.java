@@ -1,4 +1,4 @@
-package br.edu.utfpr.pb.pw44s.server.service;
+package br.edu.utfpr.pb.pw44s.server.security;
 
 import br.edu.utfpr.pb.pw44s.server.model.User;
 import br.edu.utfpr.pb.pw44s.server.repository.UserRepository;
@@ -8,18 +8,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthService implements UserDetailsService {
+public class AuthUserService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthUserService(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Usuário não encontrado!");
+            throw new UsernameNotFoundException("User not found");
         }
         return user;
     }

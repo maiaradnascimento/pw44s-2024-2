@@ -1,24 +1,61 @@
-
-export interface IUserSignup {
+export interface IUserSignup{
     displayName: string;
     username: string;
     password: string;
 }
 
-export interface IUserLogin {
+export interface IUserLogin{
     username: string;
     password: string;
 }
 
-export interface ICategory {
+export interface IUser{
+    id: number;
+    displayName: string;
+    username: string;
+    password: string;
+}
+
+export interface ApiResponse {
+    message: string;
+    validationErrors: any; 
+}
+
+export interface ICategory{
     id?: number;
     name: string;
 }
 
-export interface IProduct {
+export interface IProduct{
+    id?: number,
+    name: string,
+    price: number,
+    description: string,
+    img: string,
+    category: ICategory;
+}
+
+export interface IProductCard {
     id?: number;
+    img: string,
     name: string;
     description: string;
     price: number;
-    category: ICategory;
+    onAddToCart: () => void;
 }
+
+export interface IProductOrder {
+    id?: number;
+    quantity: number; 
+    unitPrice: number; 
+    product: IProduct;
+}
+
+export interface IOrder{
+    id?: number;
+    price: number;
+    date: string;
+    userId: number;
+    productOrders: IProductOrder[];
+}
+  

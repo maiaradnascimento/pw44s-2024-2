@@ -1,5 +1,6 @@
 package br.edu.utfpr.pb.pw44s.server.dto;
 
+import br.edu.utfpr.pb.pw44s.server.model.Category;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -7,8 +8,7 @@ import java.math.BigDecimal;
 
 @Data
 public class ProductDTO {
-
-    private Long id;
+    private long id;
 
     @NotNull
     private String name;
@@ -19,5 +19,8 @@ public class ProductDTO {
     @NotNull
     private BigDecimal price;
 
+    private String img;
+
     private CategoryDTO category;
+
 }

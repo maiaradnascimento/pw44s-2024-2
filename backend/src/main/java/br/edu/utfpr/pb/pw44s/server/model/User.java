@@ -1,44 +1,68 @@
 package br.edu.utfpr.pb.pw44s.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+
 
 @Entity
-@Table(name = "tb_user")
+@Table(name="user_tb")
 @Getter @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull(message = "O atributo usuário não pode ser nulo.")
-    @Size(min = 4, max = 50)
-    private String username;
+    private long id;
 
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 4, max = 50, message = "O tamanho do username deve ser entre 4 e 50 caracteres")  // valida para que o atributo tenha entre 4 e 255 caracteres
+    private String username;
+
+    @NotNull // valida para que o atributo não seja nulo
     private String displayName;
 
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, max = 254)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
     private String password;
+    //valida para que o atributo tenha pelo menos 1 letra maiúscula,
+    // 1 letra minúscula e 1 número.
+
+    //Metodo que irá retornar a lista de permissões
+    @Override
+    @Transient
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return AuthorityUtils.createAuthorityList("Role_USER");
+    }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
+    @Transient
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient  public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @Transient  public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @Transient  public boolean isEnabled() {
+        return true;
     }
 }

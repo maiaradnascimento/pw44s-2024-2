@@ -10,24 +10,25 @@ import java.util.Map;
 @NoArgsConstructor
 public class ApiError {
     private long timestamp = new Date().getTime();
+
     private int status;
+
     private String message;
+
     private String url;
+
     private Map<String, String> validationErrors;
 
-    public ApiError(final int status, final String message,
-                    final String url) {
-        this.status = status;
-        this.message = message;
-        this.url = url;
-    }
-
-    public ApiError(final int status, final String message,
-                    final String url,
-                    final Map<String, String> validationErrors) {
+    public ApiError(int status, String message, String url, Map<String, String> validationErrors) {
         this.status = status;
         this.message = message;
         this.url = url;
         this.validationErrors = validationErrors;
+    }
+
+    public ApiError(String message, String url, int status) {
+        this.status = status;
+        this.message = message;
+        this.url = url;
     }
 }

@@ -1,8 +1,1 @@
-.form-crud {
-  max-width: 450px;
-  padding: 15px;
-}
-
-.form-crud .form-floating:focus-within {
-  z-index: 2;
-}
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";

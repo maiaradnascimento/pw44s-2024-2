@@ -2,13 +2,12 @@ package br.edu.utfpr.pb.pw44s.server.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class WebConfig {
-    
     @Bean
-    public ModelMapper modelMapper() {
+    public ModelMapper modelMapper(){
         return new ModelMapper();
     }
 }

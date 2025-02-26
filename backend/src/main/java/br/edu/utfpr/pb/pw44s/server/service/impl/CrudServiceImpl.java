@@ -10,9 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class CrudServiceImpl<T, ID extends Serializable>
-        implements ICrudService<T, ID> {
-
+public abstract class CrudServiceImpl <T, ID extends Serializable> implements ICrudService<T, ID> {
     protected abstract JpaRepository<T, ID> getRepository();
 
     @Override
@@ -41,12 +39,12 @@ public abstract class CrudServiceImpl<T, ID extends Serializable>
     }
 
     @Override
-    public Iterable<T> save(Iterable<T> iterable) {
-        return getRepository().saveAll(iterable);
+    public Iterable<T> save(Iterable<T> entities) {
+        return getRepository().saveAll(entities);
     }
 
     @Override
-    public void flush() {
+    public void flush(){
         getRepository().flush();
     }
 
@@ -62,7 +60,7 @@ public abstract class CrudServiceImpl<T, ID extends Serializable>
 
     @Override
     @Transactional(readOnly = true)
-    public long count() {
+    public long count(){
         return getRepository().count();
     }
 
@@ -72,12 +70,12 @@ public abstract class CrudServiceImpl<T, ID extends Serializable>
     }
 
     @Override
-    public void delete(Iterable<? extends T> iterable) {
+    public void delete(Iterable<? extends T> iterable){
         getRepository().deleteAll(iterable);
     }
 
     @Override
-    public void deleteAll() {
+    public void deleteAll(){
         getRepository().deleteAll();
     }
 }

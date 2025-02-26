@@ -1,19 +1,19 @@
-import { NavBar } from "@/components/NavBar";
-import AuthService from "@/service/AuthService";
+import AuthService from "@/service/AuthService"
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { NavBar } from "@/components/NavBar";
 
-
-export function AuthenticatedRoutes() {
-    const isAuthenticated = AuthService.isAuthenticated();
+export function AuthenticationRoutes(){
+    const isAuthenticaded = AuthService.isAuthenticaded();
     const location = useLocation();
-    return (
-        isAuthenticated ? (
-            <>
-                <NavBar />
-                <Outlet />
-            </>
-        ) : (
-            <Navigate to="/login" state={{from: location}} replace/>
-        )
-    );
+
+    return isAuthenticaded ? (
+        <>
+            <Outlet/>
+        </>
+    ) : (
+        <>
+            <NavBar/>
+            <Navigate to="/login" state={{from : location}} replace/>
+        </>
+    )
 }

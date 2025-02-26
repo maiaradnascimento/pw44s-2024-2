@@ -5,11 +5,12 @@ import br.edu.utfpr.pb.pw44s.server.model.Product;
 import br.edu.utfpr.pb.pw44s.server.service.ICrudService;
 import br.edu.utfpr.pb.pw44s.server.service.IProductService;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("products")
-public class ProductController extends CrudController<Product, ProductDTO, Long> {
+@RequestMapping("product")
+public class ProductController extends CrudController<Product, ProductDTO, Long>{
     private static IProductService productService;
     private static ModelMapper modelMapper;
 

@@ -1,13 +1,16 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import "./App.css";
-import { BaseRoutes } from "./routes/BaseRoutes";
+import React from 'react'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { BaseRoutes } from './Routes/BaseRoutes';
 
-export function App() {
+function App() {
   return (
-    <>
-      <ChakraProvider>
-        <BaseRoutes />
-      </ChakraProvider>
-    </>
-  );
+    <div>
+      <BaseRoutes/>
+    </div>
+  )
 }
+
+export default App

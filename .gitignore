@@ -26,6 +26,9 @@ replay_pid*
 # build
 */target
 */node_modules
+*/.mvn
+*/mvnw.*
 
 # idea
 */.idea
+backend/mvnw.cmd
